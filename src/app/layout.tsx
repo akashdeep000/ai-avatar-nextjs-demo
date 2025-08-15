@@ -1,5 +1,7 @@
+import { ClientAIAvatarProvider } from "@/components/AIAvatarProviderClientWraper";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -22,12 +24,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Script src="/live2d/Core/live2dcubismcore.js" strategy="lazyOnload" />
+        {
+          backendUrl &&
+          <ClientAIAvatarProvider backendUrl={backendUrl}>
+            {children}
+          </ClientAIAvatarProvider>
+        }
       </body>
     </html>
   );

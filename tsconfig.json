@@ -19,7 +19,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@framework/*": ["./Live2dWebSDK/Framework/dist/*"],
+      "@cubismsdksamples/*": ["./Live2dWebSDK/src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
